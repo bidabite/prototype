@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "365629773893",
+    "project_id": "enstacksolution",
+    "storage_bucket": "enstacksolution.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365629773893:android:056ecf12f7e29c960d6b2c",
+        "android_client_info": {
+          "package_name": "com.example.prototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365629773893-b9aqir46tm8c1ok9t68i2gjr55rv3io2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH_Wun4yr-DzyMTGtkOS2VOEgtOX-6XWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "365629773893-b9aqir46tm8c1ok9t68i2gjr55rv3io2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
