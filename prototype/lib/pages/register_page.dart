@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:prototype/components/buttons.dart';
-import 'package:prototype/components/text_field.dart';
 
-class LoginPage extends StatefulWidget {
+import '../components/buttons.dart';
+import '../components/text_field.dart';
+
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({Key? key, this.onTap}) : super(key: key);
+  const RegisterPage({Key? key, this.onTap}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-
+class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  final confirmPasswordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +38,19 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 // welcome back
                 Text(
-                  "Welcome back, you've been missed",
-                  style: TextStyle(
-                      color: Colors.grey[700]
-                  )
+                    "Let's create an account for you",
+                    style: TextStyle(
+                        color: Colors.grey[700]
+                    )
                 ),
                 const SizedBox(
                     height: 25
                 ),
                 // email textfield
                 MyTextField(
-                  controller: emailTextController,
-                  hintText: "Email",
-                  obscureText: false
+                    controller: emailTextController,
+                    hintText: "Email",
+                    obscureText: false
                 ),
 
                 const SizedBox(
@@ -64,13 +65,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(
+                    height: 10
+                ),
+
+                // confirm password textfield
+                MyTextField(
+                    controller: confirmPasswordTextController,
+                    hintText: "Confirm Password",
+                    obscureText: true
+                ),
+
+                const SizedBox(
                     height: 25
                 ),
 
                 // sign in button
                 MyButton(
-                  onTap: (){},
-                  text: "Sign In"
+                    onTap: (){},
+                    text: "Sign Up"
                 ),
 
                 const SizedBox(
@@ -81,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                        "Not a member?",
+                        "Already have an account?",
                         style: TextStyle(
                             color: Colors.grey[700]
                         )
@@ -90,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                          "Register now",
+                          "Login now",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.blue
@@ -98,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     )
                   ],
-                ),
+                )
               ],
             ),
           ),
