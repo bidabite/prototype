@@ -72,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text(
           "Profile Page"
         ),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color(0xFFFFFFFF),
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance.collection("Users").doc(currentUser.email).snapshots(),

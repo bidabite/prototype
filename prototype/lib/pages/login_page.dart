@@ -55,89 +55,105 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
-                const SizedBox(
-                    height: 50
-                ),
-                // welcome back
-                Text(
-                  "Welcome back, you've been missed",
-                  style: TextStyle(
-                      color: Colors.grey[700]
-                  )
-                ),
-                const SizedBox(
-                    height: 25
-                ),
-                // email textfield
-                MyTextField(
-                  controller: emailTextController,
-                  hintText: "Email",
-                  obscureText: false
-                ),
-
-                const SizedBox(
-                    height: 10
-                ),
-
-                // password textfield
-                MyTextField(
-                    controller: passwordTextController,
-                    hintText: "Password",
-                    obscureText: true
-                ),
-
-                const SizedBox(
-                    height: 25
-                ),
-
-                // sign in button
-                MyButton(
-                  onTap: signIn,
-                  text: "Sign In"
-                ),
-
-                const SizedBox(
-                    height: 25
-                ),
-                // go to register page
-                Row(
+        child: Stack(
+          children: [
+            Positioned(
+                top: 20,
+                child: ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    Colors.grey.withOpacity(0.5),
+                    BlendMode.srcATop,
+                  ),
+                  child: Image.asset(
+                    'assets/1.png',
+                  ),
+                )
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // logo
+                    const Icon(
+                      Icons.lock,
+                      size: 100,
+                    ),
+                    const SizedBox(
+                        height: 50
+                    ),
+                    // welcome back
                     Text(
-                        "Not a member?",
+                        "Welcome back, you've been missed",
                         style: TextStyle(
                             color: Colors.grey[700]
                         )
                     ),
-                    const SizedBox(width: 4),
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: const Text(
-                          "Register now",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue
-                          )
-                      ),
-                    )
+                    const SizedBox(
+                        height: 25
+                    ),
+                    // email textfield
+                    MyTextField(
+                        controller: emailTextController,
+                        hintText: "Email",
+                        obscureText: false
+                    ),
+
+                    const SizedBox(
+                        height: 10
+                    ),
+
+                    // password textfield
+                    MyTextField(
+                        controller: passwordTextController,
+                        hintText: "Password",
+                        obscureText: true
+                    ),
+
+                    const SizedBox(
+                        height: 25
+                    ),
+
+                    // sign in button
+                    MyButton(
+                        onTap: signIn,
+                        text: "Sign In"
+                    ),
+
+                    const SizedBox(
+                        height: 25
+                    ),
+                    // go to register page
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                            "Not a member?",
+                            style: TextStyle(
+                                color: Colors.grey[700]
+                            )
+                        ),
+                        const SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: widget.onTap,
+                          child: const Text(
+                              "Register now",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF0052CC)
+                              )
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
