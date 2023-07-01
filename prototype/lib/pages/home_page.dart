@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prototype/components/drawer.dart';
 import 'package:prototype/components/text_field.dart';
+import 'package:prototype/pages/profile_page.dart';
 
 import '../components/announcement.dart';
 
@@ -46,6 +48,16 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // navigate to profile page
+  void goToProfilePage() {
+    // pop menu drawer
+    Navigator.pop(context);
+
+    // go to profile page
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage())
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,13 +66,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.grey[900],
         elevation: 0,
         title: const Text("Home"),
-        actions: [
-          // sign out button
-          IconButton(
-            onPressed: signOut,
-            icon: const Icon(Icons.logout)
-          ),
-        ],
+      ),
+      drawer: MyDrawer(
+        onProfileTap: goToProfilePage,
+        onSignOut: signOut,
       ),
       body: Center(
         child: Column(
