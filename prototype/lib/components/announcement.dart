@@ -58,63 +58,7 @@ class _WallPostState extends State<WallPost> {
       postRef.update({
         'Likes': FieldValue.arrayRemove([currentUser.email])
       });
-
     }
-  }
-
-  // add a comment
-  void addComment(String commentText) {
-    FirebaseFirestore.instance
-    .collection("User Posts")
-    .doc(widget.postId)
-    .collection("Comments")
-    .add({
-      "CommentText": commentText,
-      "CommentedBy": currentUser.email,
-      "CommentTime": Timestamp.now()
-    });
-  }
-
-  // show a dialog box for adding comment
-  void showCommentDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text("Add Comment"),
-        content: TextField(
-          controller: _commentTextController,
-          decoration: InputDecoration(hintText: "Write a comment")
-        ),
-        actions: [
-          // cancel button
-          TextButton(
-            onPressed: () {
-              // pop box
-              Navigator.pop(context);
-
-              // clear controller
-              _commentTextController.clear();
-            },
-            child: Text("Cancel"),
-          ),
-
-          // save button
-          TextButton(
-            onPressed: () {
-              // add comment
-              addComment(_commentTextController.text);
-
-              // pop box
-              Navigator.pop(context);
-
-              // clear controller
-              _commentTextController.clear();
-            },
-            child: Text("Post"),
-          )
-        ],
-      )
-    );
   }
 
   @override
@@ -280,11 +224,7 @@ class _WallPostState extends State<WallPost> {
                   const SizedBox(width: 10),
                   Column(
                     children: [
-                      // comment button
-                      CommentButton(onTap: showCommentDialog),
-
-                      const SizedBox(height: 5),
-
+                      CommentButton(),
                       // comment count
                       StreamBuilder(
                         stream: FirebaseFirestore.instance

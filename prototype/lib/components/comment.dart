@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Comment extends StatelessWidget {
@@ -10,11 +11,11 @@ class Comment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: Colors.white,
         borderRadius: BorderRadius.circular(4)
       ),
       margin: const EdgeInsets.only(bottom: 5),
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,9 +26,29 @@ class Comment extends StatelessWidget {
 
           // user, time
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(user, style: TextStyle(color: Colors.grey[400])),
-              Text(" . ", style: TextStyle(color: Colors.grey[400])),
+              StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("Users")
+                      .doc(user)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Text(
+                        "",
+                        style: TextStyle(color: Colors.grey),
+                      );
+                    }
+                    String name = snapshot.data!.get('username');
+                    return Text(
+                      name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.grey[400])
+                    );
+                  }
+              ),
               Text(time, style: TextStyle(color: Colors.grey[400]))
             ],
           )
