@@ -27,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
       await showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Color(0xFF0052CC),
           title: Text(
             "Edit $field",
             style: TextStyle(color: Colors.white)
@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text(
           "Profile Page",
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF0052CC),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.white),
@@ -104,6 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 // profile pic
                 const Icon(
                   Icons.person,
+                  color: Color(0xFF0052CC),
                   size: 72,
                 ),
 
@@ -136,14 +137,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 // username
                 MyTextBox(
                   text: userData['username'],
-                  sectionName: "username",
+                  sectionName: "Organization",
                   onPressed: () => editField('username')
                 ),
 
                 // bio
                 MyTextBox(
                   text: userData['bio'],
-                  sectionName: "bio",
+                  sectionName: "About",
                   onPressed: () => editField('bio')
                 ),
 

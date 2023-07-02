@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
       FirebaseFirestore.instance.collection("Users").doc(userCredential.user!.email).set({
         'username': emailTextController.text.split('@')[0], // initial username
         'bio': 'Empty bio..', // initiall empty bio
-        // add any additional fields as needed
+        'image': "https://firebasestorage.googleapis.com/v0/b/enstacksolution.appspot.com/o/business-people-meeting-vector-flat-design1.jpg?alt=media&token=44903e20-5eed-42cf-b2a8-eb771909e8fd"
       });
 
       // pop loading circle
@@ -98,9 +98,32 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // logo
-                    const Icon(
-                      Icons.lock,
-                      size: 100,
+                    Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Color(0xFF0052CC),
+                          width: 3.0,
+                        ),
+                      ),
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/3.png',
+                          scale: 0.75,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      "Endemand",
+                      style: TextStyle(
+                          color: Color(0xFF0052CC),
+                          fontWeight: FontWeight.w800,
+                          fontSize: 30
+                      ),
                     ),
                     const SizedBox(
                         height: 50

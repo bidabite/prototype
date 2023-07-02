@@ -96,6 +96,15 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                       ),
                     ),
+                    const SizedBox(height: 20),
+                    Text(
+                      "Endemand",
+                      style: TextStyle(
+                        color: Color(0xFF0052CC),
+                        fontWeight: FontWeight.w800,
+                        fontSize: 30
+                      ),
+                    ),
                     const SizedBox(
                         height: 50
                     ),

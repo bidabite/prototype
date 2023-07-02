@@ -104,6 +104,7 @@ class _WallPostState extends State<WallPost> {
                       );
                     }
                     String image = snapshot.data!.get('image');
+
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
@@ -113,7 +114,7 @@ class _WallPostState extends State<WallPost> {
                           color: const Color(0xFF0052CC),
                         ),
                         child: Image.network(
-                          image, // Replace with the URL of your network image
+                          image,
                           fit: BoxFit.cover, // Adjust the fit as needed
                         ),
                       ),

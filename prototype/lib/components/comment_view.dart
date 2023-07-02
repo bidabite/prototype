@@ -162,11 +162,32 @@ void ViewComment(BuildContext context, String announcement) {
                   children: snapshot.data!.docs.map((doc) {
                     // get the comment
                     final commentData = doc.data() as Map<String, dynamic>;
-
-                    return Comment(
-                      text: commentData["CommentText"],
-                      user: commentData["CommentedBy"],
-                      time: formatData(commentData["CommentTime"])
+                    return StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("Users")
+                          .doc(commentData["CommentedBy"])
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Text(
+                            "",
+                            style: TextStyle(color: Colors.grey),
+                          );
+                        }
+                        final link = snapshot.data!.get('image');
+                        final username = snapshot.data!.get('username');
+                        final about = snapshot.data!.get('bio');
+                        return GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => VisitPage(image: link, bio: about, name: username,)));
+                          },
+                          child: Comment(
+                            text: commentData["CommentText"],
+                            user: commentData["CommentedBy"],
+                            time: formatData(commentData["CommentTime"])
+                          ),
+                        );
+                      }
                     );
                   }).toList(),
                 );
