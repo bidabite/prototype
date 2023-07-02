@@ -1,16 +1,4 @@
-# prototype
+# Endemand
+A mobile application platform that enables SMEs to access a range of supply or outsourcing listings provided by large businesses. Through this platform, SMEs can browse these listings and communicate with the big businesses to initiate transactions. Additionally, the platform would facilitate the connection between SME profiles and profiles of prominent corporations, thereby enhancing their credibility and attracting a larger customer base.
 
-A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
