@@ -14,7 +14,6 @@ class Comment extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(4)
       ),
-      margin: const EdgeInsets.only(bottom: 5),
       padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

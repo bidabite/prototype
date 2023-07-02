@@ -7,6 +7,7 @@ import 'package:prototype/components/text_field.dart';
 import 'package:prototype/components/comment.dart';
 
 import '../helper/helper_methods.dart';
+import '../pages/visit_profile.dart';
 
 // add a comment
 void addComment(String commentText, String postId) {
@@ -34,9 +35,10 @@ void ViewComment(BuildContext context, String announcement) {
         addComment(_myController.text, announcement);
       },
       body: Padding(
-        padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 5),
+        padding: const EdgeInsets.only(left: 10.0, right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             FutureBuilder<DocumentSnapshot>(
               future: FirebaseFirestore.instance
@@ -56,7 +58,6 @@ void ViewComment(BuildContext context, String announcement) {
                   // No data found
                   return Text('No data found');
                 }
-
                 // Data retrieved successfully
                 final data = snapshot.data!.data() as Map<String, dynamic>;
                 // Access the fields of the document
@@ -83,47 +84,59 @@ void ViewComment(BuildContext context, String announcement) {
                             }
                             final link = snapshot.data!.get('image');
                             final username = snapshot.data!.get('username');
-                            return  Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Colors.white,
-                                      width: 2.0,
+                            final about = snapshot.data!.get('bio');
+                            return  GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => VisitPage(image: link, bio: about, name: username,)));
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    child: ClipOval(
+                                        child: Image.network(
+                                          link,
+                                          fit: BoxFit.cover,
+                                        )
                                     ),
                                   ),
-                                  child: ClipOval(
-                                      child: Image.network(
-                                        link,
-                                        fit: BoxFit.cover,
-                                      )
-                                  ),
-                                ),
-                                SizedBox(width: 10),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(username),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      time,
-                                      style: TextStyle(
-                                        color: Colors.grey[600]
+                                  const SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        username,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                            color: Colors.grey[600]
+                                        ),
                                       ),
-                                    )
-                                  ],
-                                )
-                              ],
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        time,
+                                        style: TextStyle(
+                                          color: Colors.grey[600]
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             );
                           }
                       ),
-                      SizedBox(height: 10),
-                      Text('$post'),
+                      const SizedBox(height: 10),
+                      Text(post, maxLines: 10),
                     ],
                   ),
                 );

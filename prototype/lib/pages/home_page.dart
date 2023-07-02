@@ -29,10 +29,6 @@ class _HomePageState extends State<HomePage> {
   // text controller
   final textController = TextEditingController();
 
-  // sign user out
-  void signOut() {
-    FirebaseAuth.instance.signOut();
-  }
 
   // post announcement
   void postMessage() {
@@ -224,26 +220,47 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                offset: Offset(0, 3),
-                                blurRadius: 0,
-                              ),
-                            ],
-                            border: Border.all(
-                              color: Colors.grey[300]!
-                            )
-                          ),
-                          child: const Icon(
-                            Icons.filter_list,
-                            color: Color(0xFF0052CC),
+                        GestureDetector(
+                          onTap: () {
+                            AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.noHeader,
+                                animType: AnimType.scale,
+                                btnCancelOnPress: () {
+                                },
+                                btnOkOnPress: () {
+                                },
+                                body: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                  child: Column(
+                                    children: [
+
+                                    ],
+                                  ),
+                                )
+                            ).show();
+                          },
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  offset: Offset(0, 3),
+                                  blurRadius: 0,
+                                ),
+                              ],
+                              border: Border.all(
+                                color: Colors.grey[300]!
+                              )
+                            ),
+                            child: const Icon(
+                              Icons.filter_list,
+                              color: Color(0xFF0052CC),
+                            ),
                           ),
                         ),
                       ],

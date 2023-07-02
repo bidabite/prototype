@@ -67,14 +67,28 @@ class _ProfilePageState extends State<ProfilePage> {
 
     }
 
+    // sign user out
+    void signOut() {
+      FirebaseAuth.instance.signOut();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Profile Page"
+          "Profile Page",
         ),
-        backgroundColor: Color(0xFFFFFFFF),
+        backgroundColor: Colors.black,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            onPressed: () {
+              // Call your logout function here
+              signOut();
+            },
+          ),
+        ],
       ),
-      body: StreamBuilder<DocumentSnapshot>(
+        body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance.collection("Users").doc(currentUser.email).snapshots(),
         builder: (context, snapshot) {
           // get user data
