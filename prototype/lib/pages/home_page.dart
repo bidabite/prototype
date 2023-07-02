@@ -9,6 +9,7 @@ import 'package:prototype/helper/helper_methods.dart';
 import 'package:prototype/pages/profile_page.dart';
 
 import '../components/announcement.dart';
+import '../components/comment_view.dart';
 import '../components/tag.dart';
 import '../components/text_field.dart';
 
@@ -260,12 +261,17 @@ class _HomePageState extends State<HomePage> {
                             itemBuilder: (context, index) {
                               // get the message
                               final announcement = snapshot.data!.docs[index];
-                              return WallPost(
-                                message: announcement['Message'],
-                                user: announcement['UserEmail'],
-                                postId: announcement.id,
-                                likes: List<String>.from(announcement['Likes'] ?? []),
-                                time: formatData(announcement['Timestamp']),
+                              return GestureDetector(
+                                onTap: () {
+                                  ViewComment(context, announcement.id);
+                                },
+                                child: WallPost(
+                                  message: announcement['Message'],
+                                  user: announcement['UserEmail'],
+                                  postId: announcement.id,
+                                  likes: List<String>.from(announcement['Likes'] ?? []),
+                                  time: formatData(announcement['Timestamp']),
+                                ),
                               );
                             },
                           );

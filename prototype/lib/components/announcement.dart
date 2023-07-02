@@ -197,6 +197,19 @@ class _WallPostState extends State<WallPost> {
 
               SizedBox(height: 5),
 
+              // message
+              Text(
+                widget.message,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w800
+                )
+              ),
+
+              const SizedBox(height: 5),
               // user
               Row(
                 children: [
@@ -214,12 +227,9 @@ class _WallPostState extends State<WallPost> {
                         }
                         String name = snapshot.data!.get('username');
                         return Text(
-                            name,
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w800
-                            )
+                          name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         );
                       }
                   ),
@@ -227,16 +237,6 @@ class _WallPostState extends State<WallPost> {
               ),
 
               const SizedBox(height: 5),
-
-              // message
-              Text(
-                widget.message,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-
-              const SizedBox(height: 5),
-
             ],
           ),
 
@@ -311,40 +311,6 @@ class _WallPostState extends State<WallPost> {
               ),
             ],
           ),
-
-          // const SizedBox(height:20),
-
-          // StreamBuilder<QuerySnapshot>(
-          //   stream: FirebaseFirestore.instance
-          //       .collection("User Posts")
-          //       .doc(widget.postId)
-          //       .collection("Comments")
-          //       .orderBy("CommentTime", descending: true)
-          //       .snapshots(),
-          //   builder: (context, snapshot) {
-          //     // show loading circle if no data yet
-          //     if (!snapshot.hasData) {
-          //       return const Center(
-          //         child: CircularProgressIndicator()
-          //       );
-          //     }
-          //
-          //     return ListView(
-          //       shrinkWrap: true,
-          //       physics: const NeverScrollableScrollPhysics(),
-          //       children: snapshot.data!.docs.map((doc) {
-          //         // get the comment
-          //         final commentData = doc.data() as Map<String, dynamic>;
-          //
-          //         return Comment(
-          //           text: commentData["CommentText"],
-          //           user: commentData["CommentedBy"],
-          //           time: formatData(commentData["CommentTime"])
-          //         );
-          //       }).toList(),
-          //     );
-          //   }
-          // )
         ],
       ),
     );
